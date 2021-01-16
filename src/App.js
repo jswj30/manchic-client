@@ -1,15 +1,36 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
-import signin from "./signin";
-import mypage from "./mypage";
+import Signin from "./Signin";
+import Mypage from "./Mypage";
+const axios = require("axios");
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLogin: false,
+      info: "",
     };
   }
+
+  changeLogin = (e) => {
+    this.setState({
+      isLogin: true,
+      info: e,
+    });
+  };
+
+  changeLogout = () => {
+    let url = "http://localhost:4000";
+    axios.get(url).then((result) => {
+      this.setState({
+        isLogin: false,
+        id: "",
+        session: "",
+      });
+      this.props.history.push("/");
+    });
+  };
 
   render() {
     const { isLogin } = this.state;
@@ -26,8 +47,16 @@ class App extends Component {
               return <Redirect to="/signin" />;
             }}
           />
-          <Route path="/signin" component={signin} />
-          <Route path="/mypage" component={mypage} />
+          <Route
+            path="/signin"
+            render={() => <Signin changeLogin={this.changeLogin} />}
+          />
+          <Route
+            path="/mypage"
+            render={() => (
+              <Mypage changeLogout={this.changeLogout} info={this.state.info} />
+            )}
+          />
         </Switch>
       </div>
     );
