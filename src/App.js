@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Signin from "./Signin";
 import Mypage from "./Mypage";
+import Signup from "./Signup";
 const axios = require("axios");
 
 class App extends Component {
@@ -25,8 +26,7 @@ class App extends Component {
     axios.get(url).then((result) => {
       this.setState({
         isLogin: false,
-        id: "",
-        session: "",
+        info: "",
       });
       this.props.history.push("/");
     });
@@ -57,6 +57,7 @@ class App extends Component {
               <Mypage changeLogout={this.changeLogout} info={this.state.info} />
             )}
           />
+          <Route path="/signup" render={() => <Signup />} />
         </Switch>
       </div>
     );
