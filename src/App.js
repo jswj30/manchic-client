@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+
 import Signin from "./Signin";
 import Mypage from "./Mypage";
 import Signup from "./Signup";
-const axios = require("axios");
+// const axios = require("axios");
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {

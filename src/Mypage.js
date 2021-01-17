@@ -10,13 +10,17 @@ class mypage extends Component {
   }
 
   componentDidMount() {
+    this.getMain();
+  }
+
+  getMain = () => {
     let url = "http://localhost:4000/main";
     axios.get(url).then((result) => {
       this.setState({
         session: result,
       });
     });
-  }
+  };
 
   render() {
     return (
