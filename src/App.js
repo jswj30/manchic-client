@@ -24,7 +24,7 @@ class App extends Component {
   };
 
   changeLogout = () => {
-    let url = "http://localhost:4000";
+    let url = "http://localhost:4000/signout";
     axios.get(url).then((result) => {
       this.setState({
         isLogin: false,

@@ -24,7 +24,7 @@ class signin extends Component {
       alert("모든 정보를 입력해주세요.");
     } else {
       let url = "http://localhost:4000/signin";
-      axios
+      return axios
         .post(url, {
           email: email,
           password: password,
