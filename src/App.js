@@ -12,9 +12,23 @@ class App extends Component {
     super(props);
     this.state = {
       isLogin: false,
+      mainSession: "",
       info: "",
     };
   }
+
+  componentDidMount() {
+    this.getMain();
+  }
+
+  getMain = () => {
+    let url = "http://localhost:4000/main";
+    axios.get(url).then((result) => {
+      this.setState({
+        mainSession: result,
+      });
+    });
+  };
 
   changeLogin = (e) => {
     this.setState({
@@ -56,7 +70,11 @@ class App extends Component {
           <Route
             path="/mypage"
             render={() => (
-              <Mypage changeLogout={this.changeLogout} info={this.state.info} />
+              <Mypage
+                changeLogout={this.changeLogout}
+                info={this.state.info}
+                mainSession={this.state.mainSession}
+              />
             )}
           />
           <Route path="/signup" render={() => <Signup />} />
