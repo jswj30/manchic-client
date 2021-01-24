@@ -12,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       isLogin: false,
-      mainSession: "",
+      mainSession: "세션이 없습니다.",
       info: "",
     };
   }
@@ -24,6 +24,7 @@ class App extends Component {
   getMain = () => {
     let url = "http://localhost:4000/main";
     axios.get(url).then((result) => {
+      console.log("result: ", result);
       this.setState({
         mainSession: result,
       });
@@ -71,6 +72,7 @@ class App extends Component {
             path="/mypage"
             render={() => (
               <Mypage
+                getMain={this.getMain}
                 changeLogout={this.changeLogout}
                 info={this.state.info}
                 mainSession={this.state.mainSession}

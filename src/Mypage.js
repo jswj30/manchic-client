@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// const axios = require("axios");
+const axios = require("axios");
 
 class mypage extends Component {
   constructor(props) {
@@ -9,18 +9,19 @@ class mypage extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.getMain();
-  // }
+  componentDidMount() {
+    this.getMain();
+  }
 
-  // getMain = () => {
-  //   let url = "http://localhost:4000/main";
-  //   axios.get(url).then((result) => {
-  //     this.setState({
-  //       session: result,
-  //     });
-  //   });
-  // };
+  getMain = () => {
+    let url = "http://localhost:4000/main";
+    axios.get(url).then((result) => {
+      console.log("result: ", result);
+      this.setState({
+        session: result,
+      });
+    });
+  };
 
   render() {
     return (
