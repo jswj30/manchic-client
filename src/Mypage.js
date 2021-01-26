@@ -18,7 +18,7 @@ class mypage extends Component {
     axios.get(url).then((result) => {
       console.log("result: ", result);
       this.setState({
-        session: result,
+        session: result.session,
       });
     });
   };

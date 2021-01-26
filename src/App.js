@@ -26,7 +26,7 @@ class App extends Component {
     axios.get(url).then((result) => {
       console.log("result: ", result);
       this.setState({
-        mainSession: result,
+        mainSession: result.session,
       });
     });
   };
@@ -40,7 +40,7 @@ class App extends Component {
 
   changeLogout = () => {
     let url = "http://localhost:4000/signout";
-    axios.get(url).then((result) => {
+    axios.post(url).then((result) => {
       this.setState({
         isLogin: false,
         info: "",
