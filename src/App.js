@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
 import Signin from "./Signin";
-import Mypage from "./Mypage";
 import Signup from "./Signup";
+import Mypage from "./Mypage";
 // const axios = require("axios");
 import axios from "axios";
 
@@ -23,7 +23,7 @@ class App extends Component {
 
   getMain = () => {
     let url = "http://localhost:4000/main";
-    axios.get(url).then((result) => {
+    return axios.get(url).then((result) => {
       console.log("result: ", result);
       this.setState({
         mainSession: result.session,
