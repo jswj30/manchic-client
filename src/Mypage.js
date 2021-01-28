@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-const axios = require("axios");
+// import axios from "axios";
+
+// axios.defaults.withCredentials = true;
 
 class mypage extends Component {
   constructor(props) {
@@ -9,20 +11,6 @@ class mypage extends Component {
     };
   }
 
-  componentDidMount() {
-    this.getMain();
-  }
-
-  getMain = () => {
-    let url = "http://localhost:4000/main";
-    axios.get(url).then((result) => {
-      console.log("result: ", result);
-      this.setState({
-        session: result.session,
-      });
-    });
-  };
-
   render() {
     return (
       <div>
@@ -30,7 +18,7 @@ class mypage extends Component {
         <ul>
           <li>id: {this.props.info.id}</li>
           <li>session: {this.props.info.session}</li>
-          <li>/main session: {this.props.mainSession}</li>
+          <li>main session: {this.props.mainSession}</li>
         </ul>
         <button onClick={this.props.changeLogout}>로그아웃</button>
       </div>

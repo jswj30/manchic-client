@@ -21,27 +21,35 @@ class App extends Component {
     this.getMain();
   }
 
-  // getMain = () => {
-  //   let url = "http://localhost:4000/main";
-  //   return axios
-  //     .get(url)
-  //     .then((result) => {
-  //       console.log("result: ", result);
-  //       this.setState({
-  //         info: result.data,
-  //         mainSession: result,
-  //         isLogin: true,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       if (err.response.status === 401) {
-  //         this.setState({
-  //           isLogin: false,
-  //         });
-  //         this.props.history.push("/signin");
-  //       }
-  //     });
-  // };
+  getMain = () => {
+    axios.defaults.withCredentials = true;
+
+    let url = "http://localhost:4000/main";
+    return axios
+      .get(url, { withCredentials: true })
+      .then((result) => {
+        console.log("result: ", result);
+        this.setState({
+          mainSession: result.data.session,
+          isLogin: true,
+        });
+        this.props.history.push("/");
+      })
+      .catch((err) => {
+        if (err.response.status === 401) {
+          this.setState({
+            isLogin: false,
+          });
+          this.props.history.push("/signin");
+        }
+      });
+  };
+
+  handleUserInfo = (e) => {
+    this.setState({
+      info: e,
+    });
+  };
 
   changeLogin = (e) => {
     // this.setState({
@@ -79,7 +87,12 @@ class App extends Component {
           />
           <Route
             path="/signin"
-            render={() => <Signin changeLogin={this.changeLogin} />}
+            render={() => (
+              <Signin
+                changeLogin={this.changeLogin}
+                handleUserInfo={this.handleUserInfo}
+              />
+            )}
           />
           <Route
             path="/mypage"

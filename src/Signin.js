@@ -32,8 +32,13 @@ class signin extends Component {
         .then((result) => {
           let { data } = result;
           console.log(data);
-          this.props.changeLogin(data);
+          this.props.handleUserInfo(data);
+          this.props.changeLogin();
           this.props.history.push("/");
+        })
+        .catch((err) => {
+          alert("로그인 실패");
+          console.log(err);
         });
     }
   };
