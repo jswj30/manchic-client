@@ -21,21 +21,34 @@ class App extends Component {
     this.getMain();
   }
 
-  getMain = () => {
-    let url = "http://localhost:4000/main";
-    return axios.get(url).then((result) => {
-      console.log("result: ", result);
-      this.setState({
-        mainSession: result.session,
-      });
-    });
-  };
+  // getMain = () => {
+  //   let url = "http://localhost:4000/main";
+  //   return axios
+  //     .get(url)
+  //     .then((result) => {
+  //       console.log("result: ", result);
+  //       this.setState({
+  //         info: result.data,
+  //         mainSession: result,
+  //         isLogin: true,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       if (err.response.status === 401) {
+  //         this.setState({
+  //           isLogin: false,
+  //         });
+  //         this.props.history.push("/signin");
+  //       }
+  //     });
+  // };
 
   changeLogin = (e) => {
-    this.setState({
-      isLogin: true,
-      info: e,
-    });
+    // this.setState({
+    //   isLogin: true,
+    //   info: e,
+    // });
+    this.getMain();
   };
 
   changeLogout = () => {
