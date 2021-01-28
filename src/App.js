@@ -4,7 +4,6 @@ import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Signin from "./Signin";
 import Signup from "./Signup";
 import Mypage from "./Mypage";
-// const axios = require("axios");
 import axios from "axios";
 
 class App extends Component {
@@ -22,10 +21,8 @@ class App extends Component {
   }
 
   getMain = () => {
-    axios.defaults.withCredentials = true;
-
     let url = "http://localhost:4000/main";
-    return axios
+    axios
       .get(url, { withCredentials: true })
       .then((result) => {
         console.log("result: ", result);
@@ -52,10 +49,6 @@ class App extends Component {
   };
 
   changeLogin = (e) => {
-    // this.setState({
-    //   isLogin: true,
-    //   info: e,
-    // });
     this.getMain();
   };
 

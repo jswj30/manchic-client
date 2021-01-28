@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 const axios = require("axios");
 
+axios.defaults.withCredentials = true;
+
 class signin extends Component {
   constructor(props) {
     super(props);
@@ -18,13 +20,12 @@ class signin extends Component {
   };
 
   login = () => {
-    // alert(`Email: ${this.state.email} \nPassword: ${this.state.password}`);
     let { email, password } = this.state;
     if (!email || !password) {
       alert("모든 정보를 입력해주세요.");
     } else {
       let url = "http://localhost:4000/signin";
-      return axios
+      axios
         .post(url, {
           email: email,
           password: password,
