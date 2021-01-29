@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import Signup from "./Signup";
 const axios = require("axios");
 
 axios.defaults.withCredentials = true;
@@ -65,6 +66,7 @@ class signin extends Component {
           />
         </div>
         <button onClick={this.login}>로그인</button>
+        <button onClick={this.login}>회원가입</button>
       </div>
     );
   }
